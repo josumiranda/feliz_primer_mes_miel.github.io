@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050308">
+<meta name="description" content="Un mes contigo. Catedral de medianoche, rosa negra y vitral dorado.">
+<title>Miel</title>
+
+<script>
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Grenze+Gotisch:wght@300;400;500;600;700;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void:  '#07050a',
+          velvet:'#120a10',
+          blood: '#8f1220',
+          ember: '#d4263b',
+          gold:  '#c8a45d',
+          bone:  '#e9e3d4'
+        },
+        fontFamily: {
+          display: ['"Cinzel Decorative"', 'Georgia', 'serif'],
+          black:   ['UnifrakturMaguntia', 'Georgia', 'serif'],
+          script:  ['"Cormorant Garamond"', 'Georgia', 'serif']
+        }
+      }
+    }
+  }
+</script>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- ══════════════ SVG GLOBAL DEFS ══════════════ -->
+<svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"   stop-color="#c8a45d" stop-opacity="0"/>
+      <stop offset=".25" stop-color="#c8a45d" stop-opacity=".9"/>
+      <stop offset=".5"  stop-color="#f0d9a6" stop-opacity="1"/>
+      <stop offset=".75" stop-color="#c8a45d" stop-opacity=".9"/>
+      <stop offset="1"   stop-color="#c8a45d" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="gStem" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"   stop-color="#04070a"/>
+      <stop offset=".45" stop-color="#14100e"/>
+      <stop offset=".75" stop-color="#2a1016"/>
+      <stop offset="1"   stop-color="#0a0508"/>
+    </linearGradient>
+
+    <linearGradient id="gLeaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"   stop-color="#0b1410"/>
+      <stop offset=".55" stop-color="#161a12"/>
+      <stop offset="1"   stop-color="#0a0709"/>
+    </linearGradient>
+
+    <radialGradient id="gPetalO" cx=".5" cy=".85" r=".9">
+      <stop offset="0"   stop-color="#2c060e"/>
+      <stop offset=".55" stop-color="#12040a"/>
+      <stop offset="1"   stop-color="#050207"/>
+    </radialGradient>
+    <radialGradient id="gPetalM" cx=".5" cy=".9" r=".9">
+      <stop offset="0"   stop-color="#5a0d1a"/>
+      <stop offset=".6"  stop-color="#28060d"/>
+      <stop offset="1"   stop-color="#0d0307"/>
+    </radialGradient>
+    <radialGradient id="gPetalI" cx=".5" cy=".9" r=".9">
+      <stop offset="0"   stop-color="#8f1220"/>
+      <stop offset=".7"  stop-color="#46090f"/>
+      <stop offset="1"   stop-color="#1a040a"/>
+    </radialGradient>
+    <radialGradient id="gBloomGlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0"   stop-color="#b3182e" stop-opacity=".55"/>
+      <stop offset=".5"  stop-color="#6e0f1c" stop-opacity=".22"/>
+      <stop offset="1"   stop-color="#6e0f1c" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- vidrio del rosetón -->
+    <radialGradient id="rwGlass" cx="50%" cy="50%" r="50%">
+      <stop offset="0"   stop-color="#e0b25c" stop-opacity=".30"/>
+      <stop offset=".42" stop-color="#a32338" stop-opacity=".24"/>
+      <stop offset=".78" stop-color="#5c0f1e" stop-opacity=".16"/>
+      <stop offset="1"   stop-color="#1a0509" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- ── Arte de la rosa (capas de pétalos en espiral) ── -->
+    <g id="bloomArt">
+      <circle r="86" fill="url(#gBloomGlow)"/>
+      <g fill="url(#gPetalO)" stroke="#7c1424" stroke-opacity=".3" stroke-width="1">
+        <path d="M-34,-6 C-43,-45 -22,-65 0,-65 C22,-65 43,-45 34,-6 C18,-25 -18,-25 -34,-6 Z" transform="rotate(0)"/>
+        <path d="M-34,-6 C-43,-45 -22,-65 0,-65 C22,-65 43,-45 34,-6 C18,-25 -18,-25 -34,-6 Z" transform="rotate(60)"/>
+        <path d="M-34,-6 C-43,-45 -22,-65 0,-65 C22,-65 43,-45 34,-6 C18,-25 -18,-25 -34,-6 Z" transform="rotate(120)"/>
+        <path d="M-34,-6 C-43,-45 -22,-65 0,-65 C22,-65 43,-45 34,-6 C18,-25 -18,-25 -34,-6 Z" transform="rotate(180)"/>
+        <path d="M-34,-6 C-43,-45 -22,-65 0,-65 C22,-65 43,-45 34,-6 C18,-25 -18,-25 -34,-6 Z" transform="rotate(240)"/>
+        <path d="M-34,-6 C-43,-45 -22,-65 0,-65 C22,-65 43,-45 34,-6 C18,-25 -18,-25 -34,-6 Z" transform="rotate(300)"/>
+      </g>
+      <g fill="url(#gPetalM)" stroke="#a3182c" stroke-opacity=".35" stroke-width=".9">
+        <path d="M-27,-5 C-34,-36 -17,-52 0,-52 C17,-52 34,-36 27,-5 C14,-20 -14,-20 -27,-5 Z" transform="rotate(34) scale(.72)"/>
+        <path d="M-27,-5 C-34,-36 -17,-52 0,-52 C17,-52 34,-36 27,-5 C14,-20 -14,-20 -27,-5 Z" transform="rotate(94) scale(.72)"/>
+        <path d="M-27,-5 C-34,-36 -17,-52 0,-52 C17,-52 34,-36 27,-5 C14,-20 -14,-20 -27,-5 Z" transform="rotate(154) scale(.72)"/>
+        <path d="M-27,-5 C-34,-36 -17,-52 0,-52 C17,-52 34,-36 27,-5 C14,-20 -14,-20 -27,-5 Z" transform="rotate(214) scale(.72)"/>
+        <path d="M-27,-5 C-34,-36 -17,-52 0,-52 C17,-52 34,-36 27,-5 C14,-20 -14,-20 -27,-5 Z" transform="rotate(274) scale(.72)"/>
+        <path d="M-27,-5 C-34,-36 -17,-52 0,-52 C17,-52 34,-36 27,-5 C14,-20 -14,-20 -27,-5 Z" transform="rotate(334) scale(.72)"/>
+      </g>
+      <g fill="url(#gPetalI)" stroke="#d4263b" stroke-opacity=".3" stroke-width=".8">
+        <path d="M-24,-4 C-30,-32 -15,-46 0,-46 C15,-46 30,-32 24,-4 C12,-17 -12,-17 -24,-4 Z" transform="rotate(0) scale(.5)"/>
+        <path d="M-24,-4 C-30,-32 -15,-46 0,-46 C15,-46 30,-32 24,-4 C12,-17 -12,-17 -24,-4 Z" transform="rotate(60) scale(.5)"/>
+        <path d="M-24,-4 C-30,-32 -15,-46 0,-46 C15,-46 30,-32 24,-4 C12,-17 -12,-17 -24,-4 Z" transform="rotate(120) scale(.5)"/>
+        <path d="M-24,-4 C-30,-32 -15,-46 0,-46 C15,-46 30,-32 24,-4 C12,-17 -12,-17 -24,-4 Z" transform="rotate(180) scale(.5)"/>
+        <path d="M-24,-4 C-30,-32 -15,-46 0,-46 C15,-46 30,-32 24,-4 C12,-17 -12,-17 -24,-4 Z" transform="rotate(240) scale(.5)"/>
+        <path d="M-24,-4 C-30,-32 -15,-46 0,-46 C15,-46 30,-32 24,-4 C12,-17 -12,-17 -24,-4 Z" transform="rotate(300) scale(.5)"/>
+      </g>
+      <path d="M-14,-2 C-16,-18 -8,-27 0,-27 C8,-27 16,-18 14,-2 C7,-9 -7,-9 -14,-2 Z"
+            fill="#a3182c" opacity=".85" transform="rotate(32)"/>
+      <circle r="7" fill="#12030a"/>
+      <circle r="2.6" fill="#e0506a" opacity=".75"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ══════════════ PRELOADER ══════════════ -->
+<div class="preloader" id="preloader">
+  <svg class="pre__mark" viewBox="0 0 140 140" aria-hidden="true">
+    <g fill="none" stroke="url(#gGold)" stroke-width="1">
+      <rect x="42" y="42" width="56" height="56" transform="rotate(45 70 70)"/>
+      <rect x="52" y="52" width="36" height="36" transform="rotate(45 70 70)" stroke-opacity=".55"/>
+      <circle cx="70" cy="70" r="63" stroke-opacity=".35"/>
+    </g>
+    <circle cx="70" cy="70" r="3.5" fill="#c8a45d"/>
+  </svg>
+  <div class="pre__bar"><i id="preBar"></i></div>
+</div>
+
+<!-- ══════════════ FONDO FIJO ══════════════ -->
+<div class="sky" aria-hidden="true"></div>
+<div class="moon" id="moon" aria-hidden="true"></div>
+
+<div class="rose-window" id="roseWindow" aria-hidden="true">
+  <svg viewBox="0 0 800 800">
+    <g class="rw__glass">
+      <circle cx="400" cy="400" r="378" fill="url(#rwGlass)"/>
+    </g>
+    <g class="rw__tracery" fill="none" stroke="#c8a45d" stroke-linecap="round">
+      <circle cx="400" cy="400" r="386" stroke-width="2" stroke-opacity=".55"/>
+      <circle cx="400" cy="400" r="374" stroke-width=".8" stroke-opacity=".4"/>
+      <circle cx="400" cy="400" r="346" stroke-width="1.4" stroke-opacity=".5"/>
+      <circle cx="400" cy="400" r="70"  stroke-width="1.4" stroke-opacity=".5"/>
+      <circle cx="400" cy="400" r="60"  stroke-width=".8" stroke-opacity=".4"/>
+      <g stroke-width="1.2" stroke-opacity=".45">
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(15 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(45 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(75 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(105 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(135 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(165 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(195 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(225 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(255 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(285 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(315 400 400)"/>
+        <line x1="400" y1="330" x2="400" y2="54"  transform="rotate(345 400 400)"/>
+      </g>
+      <g stroke-width="1.6" stroke-opacity=".62">
+        <ellipse cx="400" cy="200" rx="52" ry="130"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(30 400 400)"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(60 400 400)"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(90 400 400)"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(120 400 400)"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(150 400 400)"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(180 400 400)"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(210 400 400)"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(240 400 400)"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(270 400 400)"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(300 400 400)"/>
+        <ellipse cx="400" cy="200" rx="52" ry="130" transform="rotate(330 400 400)"/>
+      </g>
+      <g stroke-width="1" stroke-opacity=".45">
+        <circle cx="400" cy="45"  r="13"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(30 400 400)"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(60 400 400)"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(90 400 400)"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(120 400 400)"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(150 400 400)"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(180 400 400)"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(210 400 400)"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(240 400 400)"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(270 400 400)"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(300 400 400)"/>
+        <circle cx="400" cy="45"  r="13" transform="rotate(330 400 400)"/>
+      </g>
+      <g stroke-width="1.3" stroke-opacity=".55">
+        <circle cx="400" cy="370" r="27"/>
+        <circle cx="400" cy="430" r="27"/>
+        <circle cx="370" cy="400" r="27"/>
+        <circle cx="430" cy="400" r="27"/>
+        <circle cx="400" cy="400" r="15" fill="#5c0f1e" fill-opacity=".55"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<!-- arco ojival: la catedral enmarca todo -->
+<div class="arch" aria-hidden="true">
+  <svg viewBox="0 0 1000 600" preserveAspectRatio="none">
+    <path d="M62,600 L62,332 C62,172 432,112 500,44 C568,112 938,172 938,332 L938,600"/>
+    <path class="arch--soft" d="M88,600 L88,340 C88,190 436,132 500,70 C564,132 912,190 912,340 L912,600"/>
+    <path class="arch--soft" d="M62,332 L132,332 M938,332 L868,332"/>
+    <path class="arch--fill" d="M500,28 L515,52 L500,76 L485,52 Z"/>
+  </svg>
+</div>
+
+<canvas id="fxBack" class="fx fx--back" aria-hidden="true"></canvas>
+
+<div class="fog fog--back" aria-hidden="true"></div>
+<div class="fog fog--back fog--back2" aria-hidden="true"></div>
+
+<!-- ══════════════ INTERFAZ ══════════════ -->
+<a href="#hero" class="monogram" id="monogram" data-cursor aria-label="inicio"><span>M</span></a>
+
+<button class="sound" id="soundBtn" type="button" data-cursor aria-label="sonido ambiente">
+  <svg viewBox="0 0 28 28" fill="none">
+    <path class="sound__horn" d="M6 11h4l6-4.5v15L10 17H6z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+    <path class="sound__arc sound__arc--1" d="M19.5 11.2c1.4 1.6 1.4 4 0 5.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <path class="sound__arc sound__arc--2" d="M22.4 8.6c2.9 3.1 2.9 7.7 0 10.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+  </svg>
+</button>
+
+<!-- ══════════════ CONTENIDO ══════════════ -->
+<main>
+
+  <!-- ── ESCENA I · PORTADA ── -->
+  <section id="hero" class="scene">
+
+    <div class="skyline skyline--far" aria-hidden="true">
+      <svg viewBox="0 0 1600 360" preserveAspectRatio="none">
+        <path d="M0,360 V268 H130 L146,222 H164 V268 H250 V186 H266 L286,124 L306,186 H322 V268 H430 V226 H446 L462,186 H478 V226 H560 V140 H576 L596,76 L616,140 H632 V268 H720 V238 H800 V172 H816 L836,116 L856,172 H872 V238 H960 V190 H976 L994,146 H1012 V190 H1100 V124 H1116 L1136,62 L1156,124 H1172 V190 H1260 V244 H1340 V180 H1356 L1376,126 L1396,180 H1412 V244 H1520 V272 H1600 V360 Z"/>
+        <path d="M286,132 L289,66 L283,66 Z M596,84 L599,18 L593,18 Z M1136,70 L1139,10 L1133,10 Z"/>
+      </svg>
+    </div>
+
+    <div class="skyline skyline--near" aria-hidden="true">
+      <svg viewBox="0 0 1600 360" preserveAspectRatio="none">
+        <path d="M0,360 V300 H90 V256 H110 L128,206 L146,256 H166 V300 H250 V246 H268 L286,200 L304,246 H322 V300 H420 V210 H440 L462,152 L484,210 H504 V300 H600 V262 H690 V224 H710 L730,178 L750,224 H770 V262 H860 V240 H880 L900,196 L920,240 H940 V300 H1040 V224 H1060 L1082,164 L1104,224 H1124 V300 H1220 V262 H1310 V230 H1330 L1348,188 L1366,230 H1384 V262 H1470 V300 H1600 V360 Z">
+        </path>
+        <path d="M462,160 L465,84 L459,84 Z M1082,172 L1085,96 L1079,96 Z M128,214 L131,150 L125,150 Z"/>
+      </svg>
+    </div>
+
+    <div class="hero__inner">
+      <p class="label" id="heroLabel">para Mikaela</p>
+
+      <div class="rule" id="heroRule"><i></i><b></b><i></i></div>
+
+      <p class="label label--soft" id="heroSub">un mes</p>
+    </div>
+
+    <div class="roses" id="roses" aria-hidden="true">
+
+      <svg class="rose rose--a" viewBox="0 0 240 540">
+        <g class="rose__stem">
+          <path class="stem-line" d="M126,536 C112,468 138,428 122,362 C112,320 128,300 124,268"
+                fill="none" stroke="url(#gStem)" stroke-width="7" stroke-linecap="round"/>
+          <path class="thorn" d="M130,452 l16,-9 -13,16 Z" fill="#0d1210"/>
+          <path class="thorn" d="M120,386 l-17,-7 14,15 Z" fill="#0d1210"/>
+          <path class="leaf" d="M120,436 C86,430 62,446 52,474 C86,486 112,470 120,436 Z" fill="url(#gLeaf)" stroke="#2a3126" stroke-width=".8"/>
+          <path class="leaf" d="M132,404 C166,398 190,414 200,442 C166,454 140,438 132,404 Z" fill="url(#gLeaf)" stroke="#2a3126" stroke-width=".8"/>
+          <path class="leaf" d="M122,336 C92,332 72,346 64,370 C94,380 116,366 122,336 Z" fill="url(#gLeaf)" stroke="#2a3126" stroke-width=".8" opacity=".85"/>
+        </g>
+        <g transform="translate(124,236) scale(.92)">
+          <g class="rose__bloom"><use href="#bloomArt"/></g>
+        </g>
+      </svg>
+
+      <svg class="rose rose--b" viewBox="0 0 240 540">
+        <g class="rose__stem">
+          <path class="stem-line" d="M114,536 C130,476 104,444 120,392 C130,358 116,336 120,306"
+                fill="none" stroke="url(#gStem)" stroke-width="6" stroke-linecap="round"/>
+          <path class="thorn" d="M110,468 l-16,-8 13,15 Z" fill="#0d1210"/>
+          <path class="leaf" d="M118,456 C152,450 176,466 186,494 C152,506 126,490 118,456 Z" fill="url(#gLeaf)" stroke="#2a3126" stroke-width=".8"/>
+          <path class="leaf" d="M122,414 C88,408 64,424 54,452 C88,464 114,448 122,414 Z" fill="url(#gLeaf)" stroke="#2a3126" stroke-width=".8" opacity=".9"/>
+        </g>
+        <g transform="translate(120,274) scale(.8)">
+          <g class="rose__bloom"><use href="#bloomArt"/></g>
+        </g>
+      </svg>
+
+      <svg class="rose rose--c" viewBox="0 0 240 540">
+        <g class="rose__stem">
+          <path class="stem-line" d="M128,536 C114,470 140,432 124,376 C114,340 126,316 122,284"
+                fill="none" stroke="url(#gStem)" stroke-width="6.5" stroke-linecap="round"/>
+          <path class="thorn" d="M132,460 l16,-9 -13,16 Z" fill="#0d1210"/>
+          <path class="leaf" d="M124,444 C90,438 66,454 56,482 C90,494 116,478 124,444 Z" fill="url(#gLeaf)" stroke="#2a3126" stroke-width=".8"/>
+          <path class="leaf" d="M126,400 C160,394 184,410 194,438 C160,450 134,434 126,400 Z" fill="url(#gLeaf)" stroke="#2a3126" stroke-width=".8"/>
+        </g>
+        <g transform="translate(122,252) scale(.86)">
+          <g class="rose__bloom"><use href="#bloomArt"/></g>
+        </g>
+      </svg>
+
+      <svg class="rose rose--d" viewBox="0 0 240 540">
+        <g class="rose__stem">
+          <path class="stem-line" d="M118,536 C132,484 108,452 122,404 C130,376 118,356 122,330"
+                fill="none" stroke="url(#gStem)" stroke-width="5.5" stroke-linecap="round"/>
+          <path class="leaf" d="M120,470 C154,464 178,480 188,508 C154,520 128,504 120,470 Z" fill="url(#gLeaf)" stroke="#2a3126" stroke-width=".8" opacity=".9"/>
+        </g>
+        <g transform="translate(122,300) scale(.62)">
+          <g class="rose__bloom"><use href="#bloomArt"/></g>
+        </g>
+      </svg>
+
+    </div>
+
+    <div class="cue" id="cue" aria-hidden="true"><i></i></div>
+  </section>
+
+  <!-- ── BANDA · MARQUESINA ── -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>mikaela</span><b></b><span>miel</span><b></b><span>mikaela</span><b></b><span>miel</span><b></b><span>mikaela</span><b></b><span>miel</span><b></b>
+      <span>mikaela</span><b></b><span>miel</span><b></b><span>mikaela</span><b></b><span>miel</span><b></b><span>mikaela</span><b></b><span>miel</span><b></b>
+    </div>
+  </div>
+
+  <!-- ── ESCENA II · EL NÚMERO ── -->
+  <section id="uno" class="scene">
+    <div class="ghost" id="ghost" aria-hidden="true">01</div>
+    <div class="container">
+      <div class="uno__inner">
+        <p class="script-line" id="unoScript">un mes</p>
+        <h2 class="phrase" id="phrase">
+          <span class="phrase__l">y te elijo</span>
+          <span class="phrase__l phrase__l--gold">cada día.</span>
+        </h2>
+        <div class="rule rule--thin" id="unoRule"><i></i><b></b><i></i></div>
+      </div>
+    </div>
+    <div class="fog fog--front fog--section" aria-hidden="true"></div>
+  </section>
+
+  <!-- ── ESCENA III · CIERRE ── -->
+  <section id="fin" class="scene">
+    <div class="fin__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="fin__inner">
+        <svg class="ornament" id="ornTop" viewBox="0 0 440 46" aria-hidden="true">
+          <path d="M14,23 C74,23 96,9 148,9 C186,9 198,23 220,23 C242,23 254,9 292,9 C344,9 366,23 426,23"
+                fill="none" stroke="url(#gGold)" stroke-width="1.2"/>
+          <path d="M14,23 C74,23 96,37 148,37 C186,37 198,23 220,23 C242,23 254,37 292,37 C344,37 366,23 426,23"
+                fill="none" stroke="url(#gGold)" stroke-width="1.2"/>
+          <rect x="213" y="16" width="14" height="14" transform="rotate(45 220 23)" fill="#c8a45d"/>
+          <circle cx="14" cy="23" r="2.6" fill="#c8a45d"/>
+          <circle cx="426" cy="23" r="2.6" fill="#c8a45d"/>
+        </svg>
+
+        <p class="label label--wide" id="finLabel">feliz primer mes</p>
+
+        <h1 class="title title--fin" id="finTitle"><span class="title__c">M</span><span class="title__c">i</span><span class="title__c">e</span><span class="title__c">l</span></h1>
+
+        <svg class="ornament ornament--flip" id="ornBot" viewBox="0 0 440 46" aria-hidden="true">
+          <path d="M14,23 C74,23 96,9 148,9 C186,9 198,23 220,23 C242,23 254,9 292,9 C344,9 366,23 426,23"
+                fill="none" stroke="url(#gGold)" stroke-width="1.2"/>
+          <path d="M14,23 C74,23 96,37 148,37 C186,37 198,23 220,23 C242,23 254,37 292,37 C344,37 366,23 426,23"
+                fill="none" stroke="url(#gGold)" stroke-width="1.2"/>
+          <rect x="213" y="16" width="14" height="14" transform="rotate(45 220 23)" fill="#c8a45d"/>
+          <circle cx="14" cy="23" r="2.6" fill="#c8a45d"/>
+          <circle cx="426" cy="23" r="2.6" fill="#c8a45d"/>
+        </svg>
+
+        <p class="script-line script-line--fin" id="finScript">el primero de muchos</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════ CAPAS SUPERIORES ══════════════ -->
+<canvas id="fxFront" class="fx fx--front" aria-hidden="true"></canvas>
+<div class="fog fog--front" aria-hidden="true"></div>
+<!-- marco iluminado de manuscrito -->
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="js/canvas.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

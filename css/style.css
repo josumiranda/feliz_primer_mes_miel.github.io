@@ -1,0 +1,564 @@
+/* ════════════════════════════════════════════════════════════
+   MI · UN MES
+   Catedral de medianoche — rosa negra, vitral y brasa
+   ════════════════════════════════════════════════════════════ */
+
+:root{
+  --void:    #050308;
+  --void-2:  #0a060e;
+  --blood:   #7e0d1b;
+  --ember:   #d4263b;
+  --gold:    #c8a45d;
+  --gold-hi: #f0d9a6;
+  --bone:    #e9e3d4;
+  --ash:     #b9a77c;
+
+  --font-black:   "UnifrakturMaguntia", Georgia, serif;
+  --font-gothic:  "Grenze Gotisch", "Cinzel Decorative", Georgia, serif;
+  --font-display: "Cinzel Decorative", Georgia, serif;
+  --font-script:  "Cormorant Garamond", Georgia, serif;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:auto; overflow-x:hidden; }
+
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--bone);
+  font-family:var(--font-script);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+.svg-defs{ position:absolute; width:0; height:0; overflow:hidden; }
+
+::selection{ background:rgba(143,18,32,.55); color:var(--gold-hi); }
+
+/* ── Capa de cielo ─────────────────────────────────────────── */
+.sky{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(120vmax 90vmax at 50% 16%, rgba(96,16,28,.30), transparent 58%),
+    radial-gradient(90vmax 70vmax at 82% 88%, rgba(58,10,20,.28), transparent 60%),
+    radial-gradient(70vmax 60vmax at 12% 78%, rgba(28,8,20,.5), transparent 62%),
+    linear-gradient(180deg, #0a0610 0%, #07050a 42%, #040308 100%);
+}
+
+/* ── Luna ──────────────────────────────────────────────────── */
+.moon{
+  position:fixed; z-index:1; pointer-events:none;
+  top:4vh; left:50%;
+  width:clamp(220px, 46vmin, 430px);
+  aspect-ratio:1;
+  margin-left:calc(clamp(220px, 46vmin, 430px) / -2);
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 38% 34%, #f3e2c2 0%, #dcae8e 26%, #b35a4e 55%, #71202a 82%, #380d16 100%);
+  box-shadow:
+    0 0  90px 18px rgba(168,40,54,.30),
+    0 0 240px 80px rgba(122,22,38,.22),
+    inset -22px -26px 70px rgba(28,4,10,.75);
+  opacity:.92;
+}
+.moon::after{
+  content:"";
+  position:absolute; inset:0; border-radius:50%;
+  background:
+    radial-gradient(circle at 62% 26%, rgba(60,10,18,.35) 0 6%, transparent 8%),
+    radial-gradient(circle at 30% 60%, rgba(60,10,18,.30) 0 9%, transparent 11%),
+    radial-gradient(circle at 68% 66%, rgba(60,10,18,.28) 0 5%, transparent 7%),
+    radial-gradient(circle at 46% 42%, rgba(255,235,200,.12) 0 4%, transparent 6%);
+  filter:blur(1px);
+  mix-blend-mode:multiply;
+}
+
+/* ── Rosetón gótico ────────────────────────────────────────── */
+.rose-window{
+  position:fixed; z-index:2; pointer-events:none;
+  top:1.4vh; left:50%;
+  width:clamp(280px, 62vmin, 570px);
+  aspect-ratio:1;
+  margin-left:calc(clamp(280px, 62vmin, 570px) / -2);
+  opacity:.85;
+  mix-blend-mode:screen;
+  filter:drop-shadow(0 0 26px rgba(150,32,48,.25));
+  /* el vitral se disuelve hacia abajo: la tracera nunca cruza los textos */
+  -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 46%, rgba(0,0,0,.5) 64%, transparent 79%);
+  mask-image:linear-gradient(180deg, #000 0%, #000 46%, rgba(0,0,0,.5) 64%, transparent 79%);
+}
+.rose-window svg{ width:100%; height:100%; display:block; }
+.rw__tracery{ transform-origin:50% 50%; animation:spin 240s linear infinite; }
+.rw__glass{ animation:breathe 9s ease-in-out infinite; transform-origin:50% 50%; }
+
+@keyframes spin{ to{ transform:rotate(360deg); } }
+@keyframes breathe{ 0%,100%{ opacity:.75; } 50%{ opacity:1; } }
+
+/* ── Skyline de catedral ───────────────────────────────────── */
+.skyline{
+  position:absolute; left:0; right:0; bottom:-1px; pointer-events:none;
+  line-height:0;
+}
+.skyline svg{ width:100%; height:clamp(150px, 26vh, 300px); display:block; }
+.skyline--near svg path{ fill:#050409; }
+.skyline--far{ bottom:clamp(60px, 11vh, 130px); opacity:.55; }
+.skyline--far svg path{ fill:#120a12; }
+.skyline--far svg{ height:clamp(110px, 19vh, 220px); filter:blur(1px); }
+
+/* ── Lienzos de partículas ─────────────────────────────────── */
+.fx{ position:fixed; inset:0; width:100%; height:100%; pointer-events:none; }
+.fx--back{ z-index:4; }
+.fx--front{ z-index:20; }
+
+/* ── Niebla ────────────────────────────────────────────────── */
+.fog{
+  position:fixed; pointer-events:none; z-index:5;
+  inset:auto 0 -22vh 0; height:78vh;
+  background:
+    radial-gradient(60vw 26vh at 18% 62%, rgba(150,120,130,.13), transparent 68%),
+    radial-gradient(52vw 22vh at 78% 48%, rgba(120,90,110,.11), transparent 66%),
+    radial-gradient(44vw 20vh at 46% 76%, rgba(140,110,120,.10), transparent 70%);
+  filter:blur(14px);
+  mix-blend-mode:screen;
+  animation:drift 46s ease-in-out infinite alternate;
+}
+.fog--back2{
+  inset:auto 0 -30vh 0; height:70vh; opacity:.7;
+  animation-duration:64s; animation-direction:alternate-reverse;
+  animation-delay:-14s;
+}
+.fog--front{
+  z-index:21; inset:-14vh auto auto 0; width:140vw; height:60vh; left:-20vw;
+  opacity:.55; filter:blur(22px);
+  animation-duration:80s;
+}
+.fog--section{ position:absolute; z-index:3; inset:auto 0 -18vh 0; height:64vh; }
+
+@keyframes drift{
+  0%   { transform:translate3d(-4vw,0,0) scale(1); }
+  50%  { transform:translate3d(3vw,-2vh,0) scale(1.08); }
+  100% { transform:translate3d(6vw,1vh,0) scale(1.02); }
+}
+
+/* ── Vineta y grano ────────────────────────────────────────── */
+.vignette{
+  position:fixed; inset:0; z-index:30; pointer-events:none;
+  background:radial-gradient(120% 92% at 50% 42%, transparent 34%, rgba(0,0,0,.72) 100%);
+}
+.grain{
+  position:fixed; inset:-120px; z-index:31; pointer-events:none;
+  opacity:.16; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  animation:grain .9s steps(4) infinite;
+}
+@keyframes grain{
+  0%{ transform:translate(0,0); }    25%{ transform:translate(-34px,22px); }
+  50%{ transform:translate(24px,-30px); } 75%{ transform:translate(-18px,-16px); }
+  100%{ transform:translate(0,0); }
+}
+
+/* ── Arco ojival de catedral ────────────────────────────────── */
+.arch{
+  position:fixed; inset:0; z-index:3;
+  pointer-events:none;
+  opacity:.62;
+}
+.arch svg{ width:100%; height:100%; display:block; }
+.arch path,.arch circle,.arch line{
+  fill:none;
+  stroke:rgba(200,164,93,.5);
+  stroke-width:1.2;
+  vector-effect:non-scaling-stroke;
+}
+.arch .arch--soft{ stroke:rgba(200,164,93,.28); stroke-width:1; }
+.arch .arch--fill{ fill:rgba(143,18,32,.35); stroke:rgba(200,164,93,.55); }
+
+/* ── Marco iluminado ────────────────────────────────────────── */
+.frame{
+  position:fixed; inset:16px; z-index:35;
+  pointer-events:none;
+  border:1px solid rgba(200,164,93,.22);
+}
+.frame::before{
+  content:"";
+  position:absolute; inset:6px;
+  border:1px solid rgba(200,164,93,.10);
+}
+.frame i{
+  position:absolute; width:11px; height:11px;
+  border:1px solid rgba(224,196,133,.65);
+  background:rgba(200,164,93,.16);
+  transform:rotate(45deg);
+}
+.frame i:nth-of-type(1){ top:-6px;  left:-6px;  }
+.frame i:nth-of-type(2){ top:-6px;  right:-6px; }
+.frame i:nth-of-type(3){ bottom:-6px; left:-6px;  }
+.frame i:nth-of-type(4){ bottom:-6px; right:-6px; }
+
+/* ── Lenis (scroll suave) ─────────────────────────────────── */
+html.lenis, html.lenis body{ height:auto; }
+.lenis.lenis-smooth{ scroll-behavior:auto !important; }
+.lenis.lenis-stopped{ overflow:hidden; }
+
+/* ── Escenas ───────────────────────────────────────────────── */
+main{ position:relative; z-index:6; }
+
+.scene{
+  position:relative;
+  min-height:100vh; min-height:100svh;
+  display:flex; align-items:center; justify-content:center;
+  padding:9vh 5vw;
+}
+
+/* ── PORTADA ───────────────────────────────────────────────── */
+#hero{ overflow:hidden; }
+
+.hero__inner{
+  position:relative; z-index:6;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  margin-top:16vh;
+}
+/* halo oscuro: aísla el texto del rosetón y del resplandor */
+.hero__inner::before,
+.uno__inner::before,
+.fin__inner::before{
+  content:"";
+  position:absolute; left:50%; top:50%;
+  width:min(80vw, 700px); height:min(54vh, 480px);
+  transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse at center,
+      rgba(4,2,7,.92) 0%, rgba(4,2,7,.88) 40%,
+      rgba(4,2,7,.55) 63%, rgba(4,2,7,.18) 80%, rgba(4,2,7,0) 94%);
+  z-index:-1;
+  pointer-events:none;
+}
+
+.label{
+  margin:0;
+  font-family:var(--font-script);
+  font-weight:400;
+  font-size:clamp(.74rem, 1.4vw, .95rem);
+  letter-spacing:.38em;
+  text-indent:.38em;
+  text-transform:uppercase;
+  color:#e4d5ad;
+  text-shadow:0 1px 14px rgba(0,0,0,.95), 0 0 4px rgba(0,0,0,.85);
+}
+.label--soft{ color:rgba(228,213,173,.86); }
+.label--wide{ letter-spacing:.44em; text-indent:.44em; }
+
+.title{
+  position:relative;
+  margin:.4em 0 .1em;
+  font-family:var(--font-gothic);
+  font-weight:600;
+  font-size:clamp(4.6rem, 16.5vw, 12.5rem);
+  line-height:.92;
+  letter-spacing:.02em;
+  background:linear-gradient(180deg,
+      #fffaee 0%, #f8ead0 24%, #e9d3a2 50%, #d3b171 72%, #f3e7c8 88%, #fffaee 100%);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+  filter:
+    drop-shadow(0 2px 2px rgba(0,0,0,.95))
+    drop-shadow(0 0 12px rgba(0,0,0,.92))
+    drop-shadow(0 0 40px rgba(0,0,0,.78))
+    drop-shadow(0 10px 46px rgba(160,26,44,.34));
+}
+.title__c{ display:inline-block; will-change:transform,filter,opacity; }
+
+.rule{
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  margin:2.4vh 0 2.2vh;
+}
+.rule i{
+  display:block; width:clamp(52px, 9vw, 110px); height:1px;
+  background:linear-gradient(90deg, transparent, rgba(200,164,93,.75));
+  transform-origin:right center;
+}
+.rule i:last-of-type{ transform-origin:left center; background:linear-gradient(90deg, rgba(200,164,93,.75), transparent); }
+.rule b{
+  width:7px; height:7px; background:var(--gold);
+  transform:rotate(45deg); box-shadow:0 0 12px rgba(200,164,93,.7);
+}
+.rule--thin i{ width:clamp(38px, 6vw, 72px); }
+
+/* cue de scroll */
+.cue{
+  position:absolute; z-index:7; bottom:3.4vh; left:50%;
+  width:1px; height:clamp(48px, 7vh, 74px);
+  margin-left:-.5px;
+  background:linear-gradient(180deg, transparent, rgba(200,164,93,.55));
+  overflow:hidden;
+}
+.cue i{
+  position:absolute; left:-1px; top:-14px;
+  width:3px; height:14px; border-radius:2px;
+  background:var(--gold-hi); box-shadow:0 0 10px rgba(240,217,166,.9);
+  animation:cue 2.4s cubic-bezier(.6,.05,.3,1) infinite;
+}
+@keyframes cue{
+  0%{ transform:translateY(0); opacity:0; }
+  18%{ opacity:1; }
+  82%{ opacity:1; }
+  100%{ transform:translateY(calc(clamp(48px, 7vh, 74px) + 18px)); opacity:0; }
+}
+
+/* ── Rosas ─────────────────────────────────────────────────── */
+.roses{
+  position:absolute; inset:0; z-index:8; pointer-events:none;
+  overflow:hidden;
+}
+.rose{ position:absolute; bottom:-4vh; overflow:visible; }
+.rose--a{ left:-3vw;  width:clamp(210px, 30vw, 400px); }
+.rose--b{ left:9vw;   width:clamp(140px, 19vw, 250px); bottom:-7vh; opacity:.92; }
+.rose--c{ right:-2vw; width:clamp(190px, 27vw, 360px); transform:scaleX(-1); }
+.rose--d{ right:10vw; width:clamp(120px, 15vw, 200px); bottom:-6vh; opacity:.88; transform:scaleX(-1); }
+
+.rose .thorn{ opacity:.9; }
+
+/* ── Marquesina ────────────────────────────────────────────── */
+.marquee{
+  position:relative; z-index:6;
+  border-top:1px solid rgba(200,164,93,.16);
+  border-bottom:1px solid rgba(200,164,93,.16);
+  padding:clamp(10px, 1.6vh, 18px) 0;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(10,6,12,.5), rgba(16,7,12,.65));
+  backdrop-filter:blur(2px);
+}
+.marquee__track{
+  display:flex; align-items:center; gap:clamp(20px, 3vw, 44px);
+  width:max-content;
+  white-space:nowrap;
+  animation:marquee 44s linear infinite;
+}
+.marquee span{
+  font-family:var(--font-black);
+  font-size:clamp(1.15rem, 2.4vw, 2rem);
+  color:rgba(200,164,93,.30);
+  letter-spacing:.04em;
+  text-shadow:0 0 22px rgba(143,18,32,.35);
+}
+.marquee b{
+  width:6px; height:6px; flex:0 0 6px;
+  background:rgba(212,38,59,.55);
+  transform:rotate(45deg);
+}
+@keyframes marquee{ to{ transform:translateX(-50%); } }
+
+/* ── ESCENA 01 ─────────────────────────────────────────────── */
+#uno{ overflow:hidden; }
+#uno .container{ position:relative; z-index:4; }
+
+.ghost{
+  position:absolute; z-index:1; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-weight:900;
+  font-size:clamp(13rem, 47vh, 27rem);
+  line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(200,164,93,.44);
+  text-shadow:0 0 90px rgba(143,18,32,.30);
+  user-select:none;
+}
+.ghost::after{
+  content:"01";
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  color:transparent;
+  -webkit-text-stroke:0;
+  background:linear-gradient(180deg, rgba(212,38,59,.22), transparent 70%);
+  -webkit-background-clip:text; background-clip:text;
+  filter:blur(2px);
+}
+
+.uno__inner{
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+}
+
+.script-line{
+  margin:0 0 2.6vh;
+  font-family:var(--font-script); font-style:italic; font-weight:400;
+  font-size:clamp(1.15rem, 2.2vw, 1.65rem);
+  letter-spacing:.2em;
+  color:#e0cc99;
+  text-shadow:0 1px 18px rgba(0,0,0,.92), 0 0 5px rgba(0,0,0,.7);
+}
+.script-line--fin{
+  margin:2.8vh 0 0;
+  color:#f4677f;
+  font-size:clamp(1.05rem, 2vw, 1.45rem);
+  text-shadow:0 1px 18px rgba(0,0,0,.92), 0 0 6px rgba(0,0,0,.7);
+}
+
+.phrase{
+  margin:0;
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(1.9rem, 5.6vw, 4.1rem);
+  line-height:1.16;
+  letter-spacing:.045em;
+  text-transform:uppercase;
+}
+.phrase__l{
+  display:block; color:var(--bone);
+  text-shadow:0 2px 24px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6);
+}
+.phrase__l--gold{
+  background:linear-gradient(180deg, #fff5dd, #eddaac 46%, #cfae66 88%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.92)) drop-shadow(0 0 22px rgba(0,0,0,.72)) drop-shadow(0 0 46px rgba(160,30,48,.4));
+}
+.phrase .w{ display:inline-block; will-change:transform,filter,opacity; }
+
+#unoRule{ margin-top:4.2vh; opacity:.9; }
+
+/* ── ESCENA FINAL ──────────────────────────────────────────── */
+#fin{ overflow:hidden; }
+#fin .container{ position:relative; z-index:4; }
+
+.fin__glow{
+  position:absolute; z-index:1; inset:0; pointer-events:none;
+  background:
+    radial-gradient(48vmax 34vmax at 50% 52%, rgba(143,18,32,.26), transparent 66%),
+    radial-gradient(70vmax 50vmax at 50% 110%, rgba(60,10,20,.5), transparent 70%);
+}
+
+.fin__inner{
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+}
+
+.ornament{ width:clamp(240px, 34vw, 420px); height:auto; display:block; opacity:.95; }
+.ornament--flip{ transform:scaleY(-1); }
+
+.title--fin{
+  margin:.24em 0;
+  font-weight:700;
+  font-size:clamp(3.6rem, 12vw, 9rem);
+  filter:
+    drop-shadow(0 2px 2px rgba(0,0,0,.95))
+    drop-shadow(0 0 14px rgba(0,0,0,.92))
+    drop-shadow(0 0 46px rgba(0,0,0,.75))
+    drop-shadow(0 0 60px rgba(176,32,52,.42));
+}
+
+/* ── Interfaz: monograma y sonido ──────────────────────────── */
+.monogram{
+  position:fixed; z-index:40; top:34px; left:34px;
+  width:46px; height:46px;
+  display:grid; place-items:center;
+  border:1px solid rgba(200,164,93,.45);
+  transform:rotate(45deg);
+  text-decoration:none;
+  transition:border-color .4s ease, box-shadow .4s ease, background .4s ease;
+  background:rgba(8,5,10,.35);
+  backdrop-filter:blur(3px);
+}
+.monogram span{
+  transform:rotate(-45deg);
+  font-family:var(--font-black);
+  font-size:1.25rem; line-height:1;
+  color:var(--gold);
+  text-shadow:0 0 14px rgba(200,164,93,.5);
+}
+.monogram:hover{
+  border-color:rgba(240,217,166,.9);
+  box-shadow:0 0 24px rgba(200,164,93,.28), inset 0 0 14px rgba(200,164,93,.12);
+  background:rgba(20,8,14,.5);
+}
+
+.sound{
+  position:fixed; z-index:40; top:34px; right:34px;
+  width:48px; height:48px;
+  display:grid; place-items:center;
+  color:rgba(200,164,93,.75);
+  background:rgba(8,5,10,.35);
+  border:1px solid rgba(200,164,93,.3);
+  border-radius:50%;
+  backdrop-filter:blur(3px);
+  transition:color .4s ease, border-color .4s ease, box-shadow .4s ease;
+}
+.sound svg{ width:26px; height:26px; }
+.sound:hover{ color:var(--gold-hi); border-color:rgba(240,217,166,.7); box-shadow:0 0 22px rgba(200,164,93,.2); }
+.sound__arc{ opacity:0; transform-origin:center; }
+.sound.is-on{ color:var(--gold-hi); border-color:rgba(240,217,166,.65); box-shadow:0 0 26px rgba(200,164,93,.25); }
+.sound.is-on .sound__arc--1{ animation:wave 1.6s ease-out infinite; }
+.sound.is-on .sound__arc--2{ animation:wave 1.6s ease-out .22s infinite; }
+@keyframes wave{
+  0%{ opacity:0; }
+  30%{ opacity:1; }
+  100%{ opacity:0; }
+}
+
+/* ── Cursor personalizado ──────────────────────────────────── */
+.cursor-dot,.cursor-ring{
+  position:fixed; z-index:70; top:0; left:0;
+  pointer-events:none; border-radius:50%;
+  opacity:0;
+  transition:opacity .35s ease;
+}
+.cursor-dot{
+  width:6px; height:6px; margin:-3px 0 0 -3px;
+  background:var(--gold-hi);
+  box-shadow:0 0 12px rgba(240,217,166,.9);
+}
+.cursor-ring{
+  width:34px; height:34px; margin:-17px 0 0 -17px;
+  border:1px solid rgba(200,164,93,.55);
+}
+body.has-cursor .cursor-dot,
+body.has-cursor .cursor-ring{ opacity:1; }
+body.has-cursor,
+body.has-cursor a,
+body.has-cursor button{ cursor:none; }
+
+/* ── Preloader ─────────────────────────────────────────────── */
+.preloader{
+  display:none;
+  position:fixed; inset:0; z-index:60;
+  background:#050308;
+  flex-direction:column; align-items:center; justify-content:center; gap:34px;
+}
+.js .preloader{ display:flex; }
+.pre__mark{ width:clamp(96px, 16vmin, 150px); animation:preSpin 18s linear infinite; }
+@keyframes preSpin{ to{ transform:rotate(360deg); } }
+.pre__bar{ width:clamp(140px, 26vw, 220px); height:1px; background:rgba(200,164,93,.16); overflow:hidden; }
+.pre__bar i{
+  display:block; height:100%; width:100%;
+  background:linear-gradient(90deg, rgba(200,164,93,.4), var(--gold-hi));
+  transform:scaleX(0); transform-origin:left center;
+  box-shadow:0 0 12px rgba(240,217,166,.8);
+}
+
+/* estados iniciales: los fija GSAP al cargar (el preloader cubre todo).
+   Sin JS, todo se ve tal cual. */
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 860px){
+  .hero__inner{ margin-top:13vh; }
+  .rose--b,.rose--d{ display:none; }
+  .rose--a{ left:-16vw; width:clamp(210px, 52vw, 320px); }
+  .rose--c{ right:-14vw; width:clamp(190px, 48vw, 300px); }
+  .monogram{ top:26px; left:26px; width:40px; height:40px; }
+  .sound{ top:26px; right:26px; width:44px; height:44px; }
+  .ghost{ font-size:clamp(9rem, 34vh, 16rem); }
+  .frame{ inset:10px; }
+  .arch{ opacity:.5; }
+}
+
+@media (max-width: 480px){
+  .label{ letter-spacing:.26em; text-indent:.26em; }
+  .label--wide{ letter-spacing:.3em; text-indent:.3em; }
+  .scene{ padding:8vh 6vw; }
+  .arch{ opacity:.42; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.001s !important; animation-iteration-count:1 !important; transition-duration:.001s !important; }
+  .js .title__c,.js .label,.js .rule,.js .cue,.js .monogram,.js .sound,.js .skyline,.js .rose,.js .ornament{ opacity:1; }
+  .js .rose .stem-line{ visibility:visible; }
+}
